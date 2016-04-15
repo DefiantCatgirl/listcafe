@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title List Cafe - Sign in
+    link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"
+    link href="/static/css/global.css" rel="stylesheet" type="text/css"
+  body
+    .container
+      == partial('header')
+      .row
+        div class="col-lg-4 col-lg-offset-4"
+          form.form-horizontal
+            fieldset
+              legend Sign in
+              .form-group
+                label for="inputEmail" class="col-lg-3 control-label" Email
+                .col-lg-9
+                  input type="text" class="form-control" id="inputEmail" placeholder="Email"
+              .form-group
+                label for="inputPassword" class="col-lg-3 control-label" Password
+                .col-lg-9
+                  input type="password" class="form-control" id="inputPassword" placeholder="Password"
+              .form-group
+                div class="col-lg-9 col-lg-offset-3"
+                  button type="submit" class="btn btn-primary" Sign in
+                  a class="btn btn-link" style="margin-left:15px" Forgot password

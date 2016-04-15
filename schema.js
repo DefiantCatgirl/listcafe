@@ -6,6 +6,10 @@ var Schema = {
         password: {type: 'string', nullable: true, maxlength: 1000},
         role_id: {type: 'integer', nullable: false, unsigned: true, references: 'roles.id'}
     },
+    roles: {
+        id: {type: 'integer', nullable: false, primary: true},
+        name: {type: 'string', maxlength: 150, nullable: false}
+    },
     lists: {
         id: {type: 'increments', nullable: false, primary: true},
         name: {type: 'string', maxlength: 150, nullable: false},

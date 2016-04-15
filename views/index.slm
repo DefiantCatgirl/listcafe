@@ -6,20 +6,7 @@ html
     link href="/static/css/global.css" rel="stylesheet" type="text/css"
   body
     .container
-      nav class="navbar navbar-default"
-        .container-fluid
-          .navbar-header
-            button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a.navbar-brand href="#"
-              span style="font-family:Titillium Web; font-weight:900" List
-              span style="font-family:Poiret One; font-weight:900" Cafe
-          div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;"
-            ul class="nav navbar-nav navbar-right"
-              li: a href="#" About
+      == partial('header')
       .jumbotron
         h1 Catalog all the things
         p Social cataloging for everything that can be tracked. Things you've watched, places you've been to, curio you own. Check out community-managed lists or create your own!
