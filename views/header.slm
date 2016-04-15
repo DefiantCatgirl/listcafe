@@ -13,10 +13,12 @@ nav class="navbar navbar-default"
       ul class="nav navbar-nav"
         li: a href="/lists" Lists
       ul class="nav navbar-nav navbar-right"
-        li: a href="/profile"
-          img src="" style="margin: -10px 10px; height: 30px; border-radius: 50%;"
-          | Username
-        li: a href="/signup" Sign up
-        li: a href="/login" Sign in
-        li: a href="/logout" Sign out
+        - if this.user
+          li: a href="/profile"
+            img src="/static/img/ging.jpg" style="margin: -10px 10px; height: 30px; width: 30px; border-radius: 50%; object-fit: cover"
+            | ${this.user.attributes.name}
+          li: a href="/logout" Sign out
+        - else
+          li: a href="/signup" Sign up
+          li: a href="/login" Sign in
         li: a href="/about" About

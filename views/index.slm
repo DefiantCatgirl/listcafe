@@ -9,4 +9,4 @@ html
       .jumbotron
         h1 Catalog all the things
         p Social cataloging for everything that can be tracked. Things you've watched, places you've been to, curio you own. Check out community-managed lists or create your own!
-        p: a class="btn btn-primary btn-lg" Learn more
+        p: a href="/about" class="btn btn-primary btn-lg" Learn more

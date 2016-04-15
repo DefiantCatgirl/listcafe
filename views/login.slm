@@ -18,7 +18,7 @@ html
               .form-group
                 label for="inputPassword" class="col-lg-3 control-label" Password
                 .col-lg-9
-                  input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                  input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password"
               .form-group
                 div class="col-lg-9 col-lg-offset-3"
                   button type="submit" class="btn btn-primary" style="margin-right:15px; margin-top:15px" Sign in
