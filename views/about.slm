@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title List Cafe - About
+    == partial('require')
+  body
+    .container
+      == partial('header')
+      div class="col-lg-6 col-lg-offset-3"
+        h2 About List Cafe
+        p.lead It's like <a href="http://myanimelist.net">MyAnimeList</a>, but for everything else.
+        p No, really, that's about it.

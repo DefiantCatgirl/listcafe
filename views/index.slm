@@ -2,8 +2,7 @@ doctype html
 html
   head
     title List Cafe
-    link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"
-    link href="/static/css/global.css" rel="stylesheet" type="text/css"
+    == partial('require')
   body
     .container
       == partial('header')

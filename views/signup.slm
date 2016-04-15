@@ -2,28 +2,31 @@ doctype html
 html
   head
     title List Cafe - Sign up
-    link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"
-    link href="/static/css/global.css" rel="stylesheet" type="text/css"
+    == partial('require')
   body
     .container
       == partial('header')
       .row
-        div class="col-lg-4 col-lg-offset-4"
-          form.form-horizontal
+        div class="col-lg-6 col-lg-offset-3"
+          form.form-horizontal method="post"
             fieldset
               legend Sign up
               .form-group
                 label for="inputEmail" class="col-lg-3 control-label" Email
                 .col-lg-9
-                  input type="text" class="form-control" id="inputEmail" placeholder="Email"
+                  input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email"
               .form-group
                 label for="inputPassword" class="col-lg-3 control-label" Password
                 .col-lg-9
-                  input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                  input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password"
               .form-group
                 label for="inputPasswordRepeat" class="col-lg-3 control-label"
                 .col-lg-9
-                  input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Password, again"
+                  input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Password, again" name="passwordrepeat"
+              .form-group
+                label for="inputName" class="col-lg-3 control-label" Name
+                .col-lg-9
+                  input type="text" class="form-control" id="inputName" placeholder="Name" name="name"
               .form-group
                 div class="col-lg-9 col-lg-offset-3"
-                  button type="submit" class="btn btn-primary" Sign up
+                  button type="submit" class="btn btn-primary" style="margin-top: 15px" Sign up

@@ -2,8 +2,9 @@ var Schema = {
     users: {
         id: {type: 'increments', nullable: false, primary: true},
         email: {type: 'string', maxlength: 254, nullable: false, unique: true},
-        name: {type: 'string', maxlength: 150, nullable: false, unique: true},
+        name: {type: 'string', maxlength: 50, nullable: false, unique: true},
         password: {type: 'string', nullable: true, maxlength: 1000},
+        salt: {type: 'string', nullable: true, maxlength: 1000},
         role_id: {type: 'integer', nullable: false, unsigned: true, references: 'roles.id'}
     },
     roles: {
