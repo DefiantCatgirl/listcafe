@@ -47,6 +47,7 @@ app.use(require('./middlewares/500'));
 app.use(require('./controllers/index'));
 app.use(require('./controllers/about'));
 app.use(require('./controllers/auth'));
+app.use(require('./controllers/profile'));
 
 app.use(require('./middlewares/404'));
 

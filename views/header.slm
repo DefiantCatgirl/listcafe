@@ -14,7 +14,7 @@ nav class="navbar navbar-default"
         li: a href="/lists" Lists
       ul class="nav navbar-nav navbar-right"
         - if this.user
-          li: a href="/profile"
+          li: a href="/profile/${this.user.attributes.name}"
             img src="/static/img/ging.jpg" style="margin: -10px 10px; height: 30px; width: 30px; border-radius: 50%; object-fit: cover"
             | ${this.user.attributes.name}
           li: a href="/logout" Sign out
