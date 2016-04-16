@@ -11,22 +11,38 @@ html
           form.form-horizontal method="post"
             fieldset
               legend Sign up
-              .form-group
+              .form-group class="${this.errorEmail || this.errorExistingEmail ? 'has-error' : ''}"
                 label for="inputEmail" class="col-lg-3 control-label" Email
                 .col-lg-9
-                  input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email"
-              .form-group
+                  input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email" value="${this.email}"
+                  - if this.errorEmail
+                    label for="inputEmail" class="control-label" Invalid email
+                  - if this.errorExistingEmail
+                    label for="inputEmail" class="control-label" User with this email already exists
+              .form-group class="${this.errorShortPassword ? 'has-error' : ''}"
                 label for="inputPassword" class="col-lg-3 control-label" Password
                 .col-lg-9
                   input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password"
-              .form-group
+                  - if this.errorShortPassword
+                    label for="inputPassword" class="control-label" Please use at least 6 symbols
+              .form-group class="${this.errorPasswordMatch ? 'has-error' : ''}"
                 label for="inputPasswordRepeat" class="col-lg-3 control-label"
                 .col-lg-9
                   input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Password, again" name="passwordrepeat"
-              .form-group
+                  - if this.errorPasswordMatch
+                    label for="inputPasswordRepeat" class="control-label" Passwords don't match
+              .form-group class="${this.errorShortName || this.errorLongName || this.errorExistingName || this.errorInvalidName ? 'has-error' : ''}"
                 label for="inputName" class="col-lg-3 control-label" Name
                 .col-lg-9
-                  input type="text" class="form-control" id="inputName" placeholder="Name" name="name"
-              .form-group
+                  input type="text" class="form-control" id="inputName" placeholder="Name" name="name" value="${this.name}"
+                  - if this.errorShortName
+                    label for="inputName" class="control-label" Name too short (less than 3 characters)
+                  - if this.errorLongName
+                    label for="inputName" class="control-label" Name too long (more than 50 symbols)
+                  - if this.errorInvalidName
+                    label for="inputName" class="control-label" Only latin letters, numbers and '.', '-', '_' allowed
+                  - if this.errorExistingName
+                    label for="inputName" class="control-label" User with this name already exists
+              .form-group class="${this.emailError ? 'has-error' : ''}"
                 div class="col-lg-9 col-lg-offset-3"
                   button type="submit" class="btn btn-primary" style="margin-top: 15px" Sign up

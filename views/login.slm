@@ -15,10 +15,12 @@ html
                 label for="inputEmail" class="col-lg-3 control-label" Email
                 .col-lg-9
                   input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email"
-              .form-group
+              .form-group class="${this.error ? 'has-error' : ''}"
                 label for="inputPassword" class="col-lg-3 control-label" Password
                 .col-lg-9
                   input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password"
+                  - if this.error
+                    label for="inputPassword" class="control-label" Incorrect password
               .form-group
                 div class="col-lg-9 col-lg-offset-3"
                   button type="submit" class="btn btn-primary" style="margin-right:15px; margin-top:15px" Sign in
