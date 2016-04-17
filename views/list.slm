@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title List Cafe - Lists
+    == partial('require')
+  body
+    .container
+      == partial('header')
+      div class="col-lg-6 col-lg-offset-3"
+        h2 ${this.list.name}
+        - if (this.list.description)
+          p.lead ${this.list.description}
+        - if (this.user && !this.showAddButton)
+          p style="float: left; margin-right: 15px": a href="/lists/${this.list.url}/add" class="btn btn-primary" Add to My lists
+        p style="float: left": a href="/lists/${this.list.url}/items" class="btn btn-primary" Browse items

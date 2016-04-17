@@ -47,7 +47,7 @@ app.use(require('./middlewares/user-to-templates'));
 app.use(require('./controllers/index'));
 app.use(require('./controllers/about'));
 app.use(require('./controllers/auth'));
-app.use(require('./controllers/profile'));
+app.use(require('./controllers/user'));
 app.use(require('./controllers/lists'));
 
 app.use(require('./middlewares/500'));

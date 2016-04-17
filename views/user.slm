@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title List Cafe - Profile
+    == partial('require')
+  body
+    .container
+      == partial('header')
+      div class="col-lg-6 col-lg-offset-3"
+        h2 ${this.profile.name}
+        - if this.lists.length
+          table class="table table-striped table-hover"
+            thead
+              tr
+                th style="width: 35%; padding-left: 20px; padding-right: 20px" ${this.profile.name}'s lists
+            tbody
+              - for (var i = 0; i < this.lists.length; i++)
+                tr
+                  td style="padding-left: 20px; padding-right: 20px"
+                    a href="/user/${this.profile.name}/lists/${this.lists[i].attributes.url}" = this.lists[i].attributes.name
+        - else
+          p.lead ${this.profile.name} has no public lists yet.

@@ -123,4 +123,70 @@ router.post('/createlist', function (req, res) {
         }));
 });
 
+function showList(req, res) {
+    List.forge()
+        .query("whereRaw", "LOWER(url) LIKE ?", req.params.url.toLowerCase())
+        .fetch()
+        .then(function (list) {
+            if (list) {
+                res.render('list', {list: list.attributes});
+            } else {
+                res.render('404');
+            }
+        });
+}
+
+router.get('/lists/:url', function(req, res) {
+    if (req.user) {
+        req.user.fetch({withRelated: [{
+                lists: function(query) {
+                    query.whereRaw("LOWER(url) LIKE ?", req.params.url.toLowerCase())
+                }
+            }]})
+            .then(function(user) {
+                if (user.related('lists').models.length == 0) {
+                    showList(req, res);
+                } else {
+                    res.render('list', {
+                        list: user.related('lists').models[0].attributes,
+                        showAddButton: true
+                    });
+                }
+            });
+    } else {
+        showList(req, res);
+    }
+});
+
+router.get('/lists/:url/add', function(req, res) {
+    if (!req.user) {
+        return res.redirect('/login');
+    }
+
+    req.user.fetch({withRelated: [{
+            lists: function(query) {
+                query.whereRaw("LOWER(url) LIKE ?", req.params.url.toLowerCase())
+            }
+        }]})
+        .then(function(user) {
+            if (user.related('lists').models.length > 0) {
+                return res.redirect('/user/' + user.attributes.name);
+            }
+
+            List.forge()
+                .query("whereRaw", "LOWER(url) LIKE ?", req.params.url.toLowerCase())
+                .fetch()
+                .then(function(list) {
+                    if (list) {
+                        user.lists().attach(list);
+                        user.save().then(function(user) {
+                            res.redirect('/user/' + user.attributes.name);
+                        });
+                    } else {
+                        res.render('404');
+                    }
+                });
+        });
+});
+
 module.exports = router;

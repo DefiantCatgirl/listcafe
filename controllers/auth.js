@@ -22,7 +22,7 @@ router.post('/login', function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            return res.redirect('/profile/' + user.attributes.name);
+            return res.redirect('/user/' + user.attributes.name);
         });
     })(req, res, next);
 });
@@ -85,7 +85,7 @@ function saveUser(res, name, password, email, next) {
 function authenticate(req, res, user) {
     req.login(user, function (err) {
         if (!err) {
-            res.redirect('/profile/' + user.attributes.name);
+            res.redirect('/user/' + user.attributes.name);
         } else {
             res.redirect('/login')
         }

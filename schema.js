@@ -17,7 +17,7 @@ var Schema = {
         description: {type: 'string', maxlength: 1000, nullable: true},
         url: {type: 'string', maxlength: 50, nullable: false, unique: true}
     },
-    list_items: {
+    lists_items: {
         id: {type: 'increments', nullable: false, primary: true},
         list_id: {type: 'integer', nullable: false, unsigned: true, references: 'lists.id'},
         name: {type: 'string', maxlength: 150, nullable: false},
@@ -37,7 +37,7 @@ var Schema = {
         status_id: {type: 'integer', nullable: false, unsigned: true, references: 'list_item_statuses.id'},
         updated_at: {type: 'dateTime', nullable: false}
     },
-    list_item_statuses: {
+    list_items_statuses: {
         id: {type: 'increments', nullable: false, primary: true},
         list_id: {type: 'integer', nullable: false, unsigned: true, references: 'lists.id'},
         name: {type: 'string', maxlength: 150, nullable: false}

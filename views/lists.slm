@@ -9,7 +9,8 @@ html
       div class="col-lg-6 col-lg-offset-3"
         h2 Lists
         p.lead Community-managed catalogs
-        p: a href="/createlist" class="btn btn-primary" Create a list
+        - if (this.user)
+          p: a href="/createlist" class="btn btn-primary" Create a list
         - if this.lists.length
           table class="table table-striped table-hover"
             thead

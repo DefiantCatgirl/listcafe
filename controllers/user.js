@@ -2,13 +2,18 @@ var express = require('express');
 var User = require('../models/user');
 var router = express.Router();
 
-router.get('/profile/:name', function (req, res) {
+router.get('/user/:name', function (req, res) {
     User.forge()
         .query("whereRaw", "LOWER(name) LIKE ?", req.params.name.toLowerCase())
-        .fetch()
+        .fetch({withRelated: {lists: function(query) {
+            query.orderByRaw("LOWER(name)");
+        }}})
         .then(function(user) {
             if (user) {
-                res.render('profile', {profile: user.attributes});
+                res.render('user', {
+                    profile: user.attributes,
+                    lists: user.related('lists').models
+                });
             } else {
                 res.render('404');
             }
