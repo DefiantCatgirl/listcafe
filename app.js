@@ -6,6 +6,7 @@ var session = require('express-session');
 var settings = require('./settings');
 var passport = require('./config/auth');
 
+require('./utils/polyfill');
 
 var app = express();
 
@@ -39,7 +40,6 @@ app.use(passport.session());
 
 // Custom middlewares
 app.use(require('./middlewares/user-to-templates'));
-app.use(require('./middlewares/500'));
 
 
 // ROUTES //
@@ -48,7 +48,9 @@ app.use(require('./controllers/index'));
 app.use(require('./controllers/about'));
 app.use(require('./controllers/auth'));
 app.use(require('./controllers/profile'));
+app.use(require('./controllers/lists'));
 
+app.use(require('./middlewares/500'));
 app.use(require('./middlewares/404'));
 
 // RUN SERVER //

@@ -8,7 +8,6 @@ router.get('/profile/:name', function (req, res) {
         .fetch()
         .then(function(user) {
             if (user) {
-                console.log(user);
                 res.render('profile', {profile: user.attributes});
             } else {
                 res.render('404');

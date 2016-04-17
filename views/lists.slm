@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title List Cafe - Lists
+    == partial('require')
+  body
+    .container
+      == partial('header')
+      div class="col-lg-6 col-lg-offset-3"
+        h2 Lists
+        p.lead Community-managed catalogs
+        p: a href="/createlist" class="btn btn-primary" Create a list
+        - if this.lists.length
+          table class="table table-striped table-hover"
+            thead
+              tr
+                th style="width: 35%; padding-left: 20px;" List name
+                th style="width: 65%"                      Description
+            tbody
+              - for (var i = 0; i < this.lists.length; i++)
+                tr
+                  td style="padding-left: 20px; padding-right: 20px"
+                    a href="/lists/${this.lists[i].attributes.url}" = this.lists[i].attributes.name
+                  td style="padding-right: 20px" = this.lists[i].attributes.description

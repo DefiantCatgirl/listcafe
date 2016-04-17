@@ -1,7 +1,7 @@
 var passport = require('passport');
 var validator = require('validator');
 var Strategy = require('passport-local').Strategy;
-var utils = require('../utils');
+var utils = require('../utils/crypto-utils');
 var User = require('../models/user');
 
 passport.use(new Strategy({

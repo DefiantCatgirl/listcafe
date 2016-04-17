@@ -2,7 +2,7 @@ var express = require('express');
 var validator = require('validator');
 var passport = require('../config/auth');
 var User = require('../models/user');
-var utils = require('../utils');
+var utils = require('../utils/crypto-utils');
 var router = express.Router();
 
 router.get('/login', function (req, res) {
@@ -10,6 +10,7 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', function(req, res, next) {
+    res.locals = req.body;
     passport.authenticate('local', function(err, user, info) {
         if (err) {
             return next(err);
@@ -93,37 +94,41 @@ function authenticate(req, res, user) {
 
 router.post('/signup', function (req, res) {
     res.locals = req.body;
+
+    var name = validator.trim(req.body.name);
+    var email = validator.trim(req.body.email);
+    var password = req.body.password;
+    var passwordRepeat = req.body.passwordrepeat;
+
     if (!validator.isEmail(req.body.email) || req.body.email.length > 254) {
         res.locals.error = true;
         res.locals.errorEmail = true;
+    } else {
+        email = validator.normalizeEmail(email);
     }
 
-    if (!validator.isAlphanumeric(req.body.name.replace('.', '').replace('_', '').replace('-', ''))) {
+    if (!validator.isAlphanumeric(name.replace('.', '').replace('_', '').replace('-', ''))) {
         res.locals.error = true;
         res.locals.errorInvalidName = true;
     }
 
-    if (req.body.name.length > 50) {
+    if (name.length > 50) {
         res.locals.error = true;
         res.locals.errorLongName = true;
     }
 
-    if (req.body.name.replace('.', '').replace('_', '').replace('-', '').length < 3) {
+    if (name.replace('.', '').replace('_', '').replace('-', '').length < 3) {
         res.locals.error = true;
         res.locals.errorShortName = true;
     }
 
-    if (req.body.password.length < 6) {
+    if (password.length < 6) {
         res.locals.error = true;
         res.locals.errorShortPassword = true;
-    } else if (req.body.password !== req.body.passwordrepeat) {
+    } else if (password !== passwordRepeat) {
         res.locals.error = true;
         res.locals.errorPasswordMatch = true;
     }
-
-    var email = validator.normalizeEmail(req.body.email);
-    var name = req.body.name;
-    var password = req.body.password;
 
     checkName(res, name,
         checkEmail.bind(null, res, email, function() {
@@ -131,7 +136,7 @@ router.post('/signup', function (req, res) {
             if (res.locals.error) {
                 res.render('signup');
             } else {
-                saveUser.bind(null, res, name, password, email,
+                saveUser(res, name, password, email,
                     authenticate.bind(null, req, res));
             }
         }));

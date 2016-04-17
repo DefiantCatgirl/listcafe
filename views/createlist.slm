@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    title List Cafe - Create List
+    == partial('require')
+  body
+    .container
+      == partial('header')
+      .row
+        div class="col-lg-6 col-lg-offset-3"
+          form.form-horizontal method="post"
+            fieldset
+              legend Create a new list
+              .form-group class="${this.errorShortName || this.errorLongName || this.errorInvalidName || this.errorExistingName ? 'has-error' : ''}"
+                label for="inputName" class="col-lg-3 control-label" Title
+                .col-lg-9
+                  input type="text" class="form-control" id="inputName" placeholder="Name of the list" name="name" value="${this.name}"
+
+                  - if this.errorShortName
+                    label for="inputName" class="control-label" Name too short (less than 3 characters)
+                  - if this.errorLongName
+                    label for="inputName" class="control-label" Name too long (more than 150 characters)
+                  - if this.errorInvalidName
+                    label for="inputName" class="control-label" Invalid characters
+                  - if this.errorExistingName
+                    label for="inputName" class="control-label" List with this title already exists
+
+              .form-group class="${this.errorShortUrl || this.errorLongUrl || this.errorInvalidUrl || this.errorExistingUrl ? 'has-error' : ''}"
+                label for="inputUrl" class="col-lg-3 control-label" URL
+                .col-lg-9
+                  input type="text" class="form-control" id="inputUrl" placeholder="/lists/<url>" name="url" value="${this.url}"
+
+                  - if this.errorShortUrl
+                    label for="inputUrl" class="control-label" URL too short (less than 3 characters)
+                  - if this.errorLongUrl
+                    label for="inputUrl" class="control-label" URL too long (more than 50 symbpls)
+                  - if this.errorInvalidUrl
+                    label for="inputUrl" class="control-label" Only latin letters, numbers and '.', '-', '_' allowed
+                  - if this.errorExistingUrl
+                    label for="inputUrl" class="control-label" List with this URL already exists
+                    
+              .form-group class="${this.errorLongDesc ? 'has-error' : ''}"
+                label for="inputDesc" class="col-lg-3 control-label" Description
+                .col-lg-9
+                  input type="text" class="form-control" id="inputDesc" placeholder="Description" name="desc" value="${this.desc}"
+
+                  - if this.errorLongDesc
+                    label for="inputDesc" class="control-label" Description too long (more than 1000 symbpls)
+
+              .form-group
+                div class="col-lg-9 col-lg-offset-3"
+                  button type="submit" class="btn btn-primary" style="margin-right:15px; margin-top:15px" Create

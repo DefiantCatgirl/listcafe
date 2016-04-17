@@ -1,7 +1,7 @@
 {
   "name": "listcafe",
   "version": "1.0.0",
-  "description": "Social cataloging for everything",
+  "description": "Social cataloging platform",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

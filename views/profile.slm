@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title List Cafe - About
+    title List Cafe - Profile
     == partial('require')
   body
     .container

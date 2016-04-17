@@ -14,7 +14,8 @@ var Schema = {
     lists: {
         id: {type: 'increments', nullable: false, primary: true},
         name: {type: 'string', maxlength: 150, nullable: false},
-        slug: {type: 'string', maxlength: 150, nullable: false, unique: true}
+        description: {type: 'string', maxlength: 1000, nullable: true},
+        url: {type: 'string', maxlength: 50, nullable: false, unique: true}
     },
     list_items: {
         id: {type: 'increments', nullable: false, primary: true},
